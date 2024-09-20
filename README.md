@@ -91,6 +91,7 @@ Using Power BI, we created several visualizations to analyze customer satisfacti
     - This bar chart measures the total number of ratings for each product category and discount range. Categories such as Electronics and Computers & Accessories have the highest engagement with discounts of 30% and above.
 
 The final visualizations can be viewed in the `tableau_visuals/` folder.
+![image](https://github.com/user-attachments/assets/5ced0767-31f2-4947-aed9-1b3197d5c4e6)
 
 ---
 
