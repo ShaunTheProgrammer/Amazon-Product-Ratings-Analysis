@@ -1,148 +1,136 @@
-# **Amazon Product Ratings and Reviews Analysis: Insights on Customer Satisfaction and Pricing**
+# Amazon Product Ratings and Reviews Analysis
 
-## **Introduction**
+## Table of Contents
 
-This project analyzes over 1,000 Amazon product ratings and reviews to understand how discount levels affect customer satisfaction and sales engagement across various product categories. The goal is to uncover patterns in customer behavior, identify opportunities for increasing customer satisfaction, and recommend data-driven strategies for improving sales performance.
+1. [Project Overview](#project-overview)
+2. [Dataset](#dataset)
+3. [Tools and Technologies](#tools-and-technologies)
+4. [Data Cleaning](#data-cleaning)
+5. [Data Transformation](#data-transformation)
+6. [Data Analysis and Insights](#data-analysis-and-insights)
+7. [Visualizations](#visualizations)
+8. [Business Recommendations](#business-recommendations)
+9. [How to Use This Repository](#how-to-use-this-repository)
 
-The project makes use of tools like Excel for data cleaning, PostgreSQL for data transformation, and Power BI for visualization. Through these analyses, we provide insights into how discounts impact customer satisfaction and how different product categories perform based on average rating and engagement levels.
+## Project Overview
 
----
+The purpose of this project is to analyze Amazon Product Ratings and Reviews across multiple categories and discount ranges to derive actionable insights that can improve decision-making for discount strategies and customer satisfaction optimization. This project simulates an end-to-end workflow, showcasing skills in Excel for data cleaning, PostgreSQL for data transformation, and Power BI for data visualization and analysis.
 
-## **Business Question**
+## Dataset
 
-**How do discount levels affect customer satisfaction and engagement across different product categories on Amazon?**
+The dataset consists of over 1,000 Amazon product ratings and reviews, organized by the following columns:
 
-To answer this, we:
+- **Product Categories**: Level 1 (main category), Level 2 (sub-category), etc.
+- **Discount Range**: Discount percentage ranges (0-10%, 11-20%, etc.)
+- **Customer Ratings**: Individual product ratings (1-5 stars).
 
-- Analyzed customer reviews and ratings data across product categories.
-- Segmented products by discount percentage to determine the impact on customer satisfaction.
-- Measured engagement through the number of total ratings per category and discount range.
-
----
-
-## **Tools and Skills Used**
-
-### **Technologies**
-
-- **Excel**: Data cleaning and preprocessing
-- **PostgreSQL**: Data transformation and querying
-- **Power BI**: Data visualization and analysis
-
-### **Skills Demonstrated**
-
-- Data Cleaning
-- Data Transformation (SQL)
-- Data Analysis & Business Insights
-- Data Visualization & Dashboarding
-
----
-
-## **Dataset Overview**
-
-The dataset contains Amazon product ratings and reviews across several categories. Key attributes include:
-
-- Product category
-- Discount percentage
-- Average customer rating
-- Total number of customer reviews
-
----
-
-## **1. Data Cleaning in Excel**
-
-We started by cleaning the raw dataset in Excel. This involved:
-
-- **Removing duplicates** to avoid skewed data.
-- **Handling missing values** by filling in blanks where appropriate or removing unusable data.
-- **Standardizing the Category column**: The data had nested categories (e.g., `Computers&Accessories|Accessories&Peripherals|Cables`), which were split into multiple levels to allow for granular analysis.
-- **Formatting** the numerical columns such as discount percentage and ratings to ensure consistency.
-
-You can view the cleaned dataset in the `data/cleaned_data.xlsx` file.
-
----
-
-## **2. Data Transformation in PostgreSQL**
-
-In PostgreSQL, we performed the following transformations to structure the data for analysis:
-
-- **Aggregated customer ratings** by discount range and product category.
-- **Segmented products** by discount percentage into four ranges: `0-10%`, `11-20%`, `21-30%`, and `30% and above`.
-- **Computed average ratings and total ratings** for each product category and discount range.
-
-Example SQL queries used in the transformation can be found in the `scripts/queries.sql` file.
-
----
-
-## **3. Data Visualization and Analysis in Power BI**
-
-Using Power BI, we created several visualizations to analyze customer satisfaction and engagement:
-
-1. **Customer Satisfaction by Discount Range Across Product Categories**
-    
-    - This bar chart shows the average customer rating for each product category, segmented by discount range. Higher discounts (30% and above) tend to correspond with higher customer satisfaction in categories like Electronics and Office Products.
-2. **Heatmap of Average Product Ratings by Category and Discount Range**
-    
-    - This heatmap visually compares the average product ratings across categories and discount ranges. Categories like Electronics, Office Products, and Computers & Accessories stand out as consistently high-rated across discount levels.
-3. **Comparison of Customer Satisfaction and Engagement by Discount Range**
-    
-    - A stacked bar chart illustrating the total number of ratings (customer engagement) in each category by discount range. Electronics and Computers & Accessories see the highest engagement at higher discount levels, indicating the importance of discount strategies.
-4. **Customer Engagement by Discount Range and Product Category**
-    
-    - This bar chart measures the total number of ratings for each product category and discount range. Categories such as Electronics and Computers & Accessories have the highest engagement with discounts of 30% and above.
-
-The final visualizations can be viewed in the `tableau_visuals/` folder.
-![image](https://github.com/user-attachments/assets/5ced0767-31f2-4947-aed9-1b3197d5c4e6)
-
----
-
-## **4. Summary Statistics**
-
-We calculated the following summary statistics:
+Key statistics:
 
 - **Number of Unique Products**: 1,349
 - **Average Rating**: 4.09 (rounded to 2 decimal places)
 - **Average Discount Percentage**: 47%
 
-These metrics provide an overall snapshot of the dataset, highlighting key trends in customer satisfaction and discount strategies.
+## Tools and Technologies
 
----
+The following tools and technologies were used:
 
-## **5. Business Insights**
+- **Data Cleaning**: Microsoft Excel
+- **Data Transformation**: PostgreSQL
+- **Data Visualization**: Power BI
 
-Based on the analysis, we derived the following insights:
+## Data Cleaning
 
-- **High Discounts Correlate with Customer Satisfaction**: Across categories, the 30%+ discount range consistently yields higher customer satisfaction (e.g., 4.3+ average ratings in Electronics, Office Products, and Computers & Accessories).
+The dataset was cleaned in Excel by performing the following steps:
+
+1. **Missing Values Handling**: Rows with null ratings or irrelevant product categories were removed.
+2. **Data Type Adjustments**: Reformatted date columns and converted numeric columns where necessary.
+3. **Categorization**: Categories were restructured into hierarchical levels (e.g., Electronics → Computers → Accessories).
+
+The cleaned dataset is stored in the `data/cleaned_data.xlsx` file.
+
+## Data Transformation
+
+The cleaned dataset was then transformed using SQL queries in PostgreSQL to prepare it for analysis. Key transformations included:
+
+- **Discount Range Categorization**: Grouping products by discount ranges (0-10%, 11-20%, etc.).
+- **Aggregated Metrics**: Calculating the average rating and total rating count for each combination of product category and discount range.
+
+The SQL script for data transformation is available in `scripts/queries.sql`.
+
+## Data Analysis and Insights
+
+Using Power BI, various analyses were conducted to understand the relationships between product categories, discount ranges, customer satisfaction, and engagement levels. The key metrics analyzed were:
+
+- **Customer Satisfaction (Average Rating)** across different discount ranges and product categories.
+- **Customer Engagement (Total Rating Count)** as a proxy for sales activity.
+
+### Summary Insights
+
+1. **Electronics and Computers & Accessories Lead Engagement**:
     
-- **Customer Engagement is Highest for High Discounts**: Categories like Electronics and Computers & Accessories have the highest total ratings (customer engagement) when discounts are 30% or more, indicating that customers are more likely to engage with higher-discounted products.
+    - The **Electronics** category, particularly for products with discounts of **30% and above**, received the most significant engagement, totaling over **9.7M ratings**.
+    - **Computers & Accessories** followed with over **5.5M ratings** in the same discount range.
+2. **Higher Discounts Increase Engagement**:
     
-- **Category-Specific Discount Strategies**:
+    - Categories like **Home & Kitchen** and **Electronics** showed that products with discounts **30% and above** drive a significant portion of customer engagement.
+    - The **21-30% discount range** also demonstrated strong engagement, especially in **Computers & Accessories** (513K ratings).
+3. **Customer Satisfaction Varies by Discount Range**:
     
-    - **Electronics**: High engagement and satisfaction at 30%+ discounts suggest that continuing to offer significant discounts could drive both sales and satisfaction.
-    - **Office Products**: Shows strong satisfaction across all discount ranges but performs especially well with moderate to high discounts (21-30% and above).
-    - **Home & Kitchen**: Despite high satisfaction (4.0+ rating), engagement lags behind other categories, suggesting a potential for more aggressive discounting strategies to boost sales.
+    - **Office Products** and **Home Improvement** consistently had higher average ratings across all discount ranges, peaking at **4.32** and **4.25** respectively for products with lower discounts (0-10%).
+    - On the other hand, categories like **Car & Motorbike** and **Musical Instruments** lagged behind with lower satisfaction ratings, especially in the **30% and above** discount range (3.8 and 3.9 stars).
+4. **Discount Effect on Rating Quality**:
+    
+    - While higher discounts tend to drive engagement, **lower discounts (0-10%)** yielded the **highest average ratings** across categories like **Office Products** and **Home & Kitchen**.
+    - **Electronics** products with **0-10% discounts** maintained a high average rating of **4.24**, suggesting that customer satisfaction does not always correlate with deeper discounts.
 
----
+### Visualizations
 
-## **6. Future Work**
+You can explore the detailed visualizations and findings in the `visualizations/powerbi_report.pbix` file. Key charts include:
 
-Potential future extensions for this project include:
+1. **Customer Satisfaction by Discount Range Across Product Categories**: A horizontal bar chart showing average ratings across discount ranges.
+2. **Heatmap of Average Product Ratings by Category and Discount Range**: A heatmap visualizing customer satisfaction across multiple discount categories.
+3. **Comparison of Customer Satisfaction and Engagement by Discount Range**: A combined bar and line chart showing total ratings and satisfaction levels per discount range.
+4. **Customer Engagement by Discount Range and Product Category**: A stacked bar chart showing total engagement across product categories by discount percentage.
 
-- Expanding the dataset to include more product categories and a larger time frame.
-- Conducting a deeper time-series analysis to track how sales and satisfaction evolve over time.
-- Performing **sentiment analysis** on customer reviews to complement quantitative rating data.
+![image](https://github.com/user-attachments/assets/5ced0767-31f2-4947-aed9-1b3197d5c4e6)
 
----
 
-## **Conclusion**
+## Business Recommendations
 
-This analysis provides a clear link between discount levels, customer satisfaction, and sales engagement, demonstrating the importance of pricing strategies in different product categories. By leveraging the insights derived from this data, businesses can refine their discount strategies to maximize customer satisfaction and engagement, ultimately boosting sales.
+Based on the analysis and insights, the following recommendations can be made to optimize discount strategies and improve customer satisfaction:
 
----
+1. **Focus on Higher Discounts for Electronics and Computers & Accessories**:
+    
+    - These categories have shown the most significant engagement when discounts of **30% and above** are applied. To further increase sales volume, consider promoting more products in these categories with similar or greater discounts.
+2. **Increase Discounts for Underperforming Categories**:
+    
+    - For categories like **Musical Instruments** and **Car & Motorbike**, which have relatively low engagement and satisfaction, higher discounts could stimulate demand and improve ratings.
+3. **Leverage Customer Satisfaction in Office Products**:
+    
+    - Given that **Office Products** consistently receive high ratings, even with low discounts, maintaining or slightly increasing discounts can continue to boost engagement while preserving high customer satisfaction.
+4. **Target Home & Kitchen with Mid-Range Discounts**:
+    
+    - This category sees substantial engagement and satisfaction in the **21-30% discount range**, making it a prime candidate for promotions in this range to balance both volume and customer sentiment.
+5. **Discount Moderation in Electronics**:
+    
+    - Although Electronics receive a high volume of ratings with deeper discounts, the **0-10% discount range** still yields excellent satisfaction ratings. Experiment with moderate discounting to preserve profit margins while maintaining customer engagement.
 
-## **How to Run This Project**
+## How to Use This Repository
 
-To reproduce this analysis:
-
-1. **Download the Dataset**: [link-to-dataset]
-2. **SQL Transformation**: Run the SQL scripts found in the `scripts/` folder to aggregate and prepare the data.
-3. **Power BI Visualizations**: Open the Power BI file (`visuals.pbix`) to view and interact with the dashboard.
+1. **Clone the Repository**:
+    
+    bash
+    
+    Copy code
+    
+    `git clone https://github.com/yourusername/amazon-reviews-analysis.git`
+    
+2. **Explore the Dataset**:
+    
+    - You can find the raw and cleaned datasets in the `data/` folder.
+3. **Run SQL Scripts**:
+    
+    - Open the SQL file in the `scripts/` folder to recreate the data transformations.
+4. **View Visualizations**:
+    
+    - Open the Power BI file (`.pbix`) located in the `visualizations/` folder to explore the dashboards and insights.
